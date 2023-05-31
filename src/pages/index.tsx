@@ -29,7 +29,7 @@ const CreatePostWizard = () => {
 
   if (!user) return null;
   return (
-    <div className="flex w-full items-center gap-3 ">
+    <div className="flex w-full items-center gap-3 p-4">
       <Image
         src={user.profileImageUrl}
         alt="Profile Image"
@@ -43,7 +43,12 @@ const CreatePostWizard = () => {
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <button onClick={() => mutate({ content: input })}>Post</button>
+      <button
+        onClick={() => mutate({ content: input })}
+        className="text-blue-500"
+      >
+        Post
+      </button>
       <UserButton afterSignOutUrl="/" />
     </div>
   );
@@ -61,7 +66,7 @@ const PostView = (props: PostWithUser) => {
       <Image
         src={author.profilePicture}
         alt="Profile Image"
-        className="flex flex-col"
+        className="flex flex-col rounded-full"
         width={56}
         height={56}
       />
