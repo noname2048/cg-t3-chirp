@@ -29,7 +29,7 @@ const CreatePostWizard = () => {
 
   if (!user) return null;
   return (
-    <div className="flex w-full gap-3">
+    <div className="flex w-full items-center gap-3 ">
       <Image
         src={user.profileImageUrl}
         alt="Profile Image"
@@ -44,6 +44,7 @@ const CreatePostWizard = () => {
         onChange={(e) => setInput(e.target.value)}
       />
       <button onClick={() => mutate({ content: input })}>Post</button>
+      <UserButton afterSignOutUrl="/" />
     </div>
   );
 };
@@ -53,7 +54,10 @@ type PostWithUser = RouterOutputs["posts"]["getAll"][number];
 const PostView = (props: PostWithUser) => {
   const { post, author } = props;
   return (
-    <div key={post.id} className="flex gap-3 border-b border-slate-400 p-8">
+    <div
+      key={post.id}
+      className="flex items-center gap-3 border-b border-slate-400 p-8"
+    >
       <Image
         src={author.profilePicture}
         alt="Profile Image"
@@ -61,13 +65,15 @@ const PostView = (props: PostWithUser) => {
         width={56}
         height={56}
       />
-      <div className="test-slate-400 flex font-bold">
-        <span>{`@${author.username} `}</span>
-        <span className="font-thin">{` ${dayjs(
-          post.createdAt
-        ).fromNow()}`}</span>
+      <div className="flex flex-col">
+        <div className="test-slate-400 flex gap-1 font-bold">
+          <span>{`@${author.username} `}</span>
+          <span className="font-thin">{` · ${dayjs(
+            post.createdAt
+          ).fromNow()}`}</span>
+        </div>
+        <span>{post.content}</span>
       </div>
-      <span>{post.content}</span>
     </div>
   );
 };
@@ -79,7 +85,7 @@ const Feed = () => {
 
   return (
     <div className="flex flex-col">
-      {[...data, ...data].map((fullPost) => (
+      {[...data].map((fullPost) => (
         <PostView {...fullPost} key={fullPost.post.id} />
       ))}
     </div>
@@ -115,12 +121,6 @@ const Home: NextPage = () => {
               </div>
             )}
             {isSignedIn && <CreatePostWizard />}
-            {isSignedIn && <UserButton afterSignOutUrl="/" />}
-          </div>
-          <div className="flex flex-col">
-            {[...data, ...data].map((fullPost) => (
-              <PostView {...fullPost} key={fullPost.post.id} />
-            ))}
           </div>
           <Feed />
         </div>
