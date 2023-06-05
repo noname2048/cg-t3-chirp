@@ -9,7 +9,8 @@ import type { RouterOutputs } from "~/utils/api";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { LoadingPage } from "~/components/loading";
+import { LoadingPage, LoadingSpinner } from "~/components/loading";
+import toast from "react-hot-toast";
 
 dayjs.extend(relativeTime);
 
@@ -17,12 +18,19 @@ const CreatePostWizard = () => {
   const { user } = useUser();
   const [input, setInput] = useState<string>("");
   const ctx = api.useContext();
-  const { mutate, isLoading } = api.posts.create.useMutation({
+  const { mutate, isLoading: isPosting } = api.posts.create.useMutation({
     onSuccess: () => {
       setInput("");
       void ctx.posts.getAll.invalidate();
     },
-    // onError: (err) => {},
+    onError: (e) => {
+      const errorMessage = e.data?.zodError?.fieldErrors.content;
+      if (errorMessage && errorMessage[0]) {
+        toast.error(errorMessage[0]);
+      } else {
+        toast.error("Failed to post! Please try again later.");
+      }
+    },
   });
 
   console.log(user);
