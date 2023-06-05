@@ -48,15 +48,34 @@ const CreatePostWizard = () => {
       <input
         placeholder="Type some emojis!"
         className="grow bg-transparent outline-none"
+        type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            if (input !== "") {
+              mutate({ content: input });
+            }
+          }
+        }}
       />
-      <button
-        onClick={() => mutate({ content: input })}
-        className="text-blue-500"
-      >
-        Post
-      </button>
+
+      {input !== "" && !isPosting && (
+        <button
+          onClick={() => mutate({ content: input })}
+          disabled={isPosting}
+          className="text-blue-500"
+        >
+          Post
+        </button>
+      )}
+      {isPosting && (
+        <div className="flex justify-center">
+          <LoadingSpinner size={20} />
+        </div>
+      )}
+
       <UserButton afterSignOutUrl="/" />
     </div>
   );
