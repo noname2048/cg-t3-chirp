@@ -3,7 +3,7 @@ import Head from "next/head";
 import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import { useState } from "react";
-
+import Link from "next/link";
 import { api } from "~/utils/api";
 import type { RouterOutputs } from "~/utils/api";
 
@@ -99,10 +99,14 @@ const PostView = (props: PostWithUser) => {
       />
       <div className="flex flex-col">
         <div className="test-slate-400 flex gap-1 font-bold">
-          <span>{`@${author.username} `}</span>
-          <span className="font-thin">{` · ${dayjs(
-            post.createdAt
-          ).fromNow()}`}</span>
+          <Link href={`/@${author.username}`}>
+            <span>{`@${author.username} `}</span>
+          </Link>
+          <Link href={`/post/${post.id}`}>
+            <span className="font-thin">{` · ${dayjs(
+              post.createdAt
+            ).fromNow()}`}</span>
+          </Link>
         </div>
         <span>{post.content}</span>
       </div>
