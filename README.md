@@ -27,17 +27,19 @@ T3 스택을 사용해 볼 수 있어서 좋았다.
 
 ## 기타 태도에 대해
 
-- ⭐️ 좋은 목표를 만드는 방법 (선배로 부터 추천 받았다)
+- ⭐️ 좋은 목표를 만드는 방법 (선배로부터 추천받았다)
   - Your Goals Kinda Suck - LEVEL UP As A Developer https://www.youtube.com/watch?v=rzwaaWH0ksk&t=1049s
-- 💡 풀스택에 대해 연연하지 말고, 빌더가 되어라. (선배로 부터 추천 받았다)
+- 💡 풀스택에 대해 연연하지 말고, 빌더가 되어라. (받았다)
   - Is "Full Stack" Even Real? https://www.youtube.com/watch?v=rAjd8z-Fx5A&t=23s
-- 데브옵스에 많은 시간을 들이기 보다, 이미 개발된 유용한 서비스를 찾아 사용하라, t3같은거 (추천 받았다)
+- 쿠버네티스 같은거 너무 오래 공부하지 마라 (추천받았다)
+  - You Don’t Need Kubernetes https://www.youtube.com/watch?v=H5sPGruv2yc
+- 데브옵스에 많은 시간을 들이기 보다, 이미 개발된 유용한 서비스를 찾아 사용하라, t3같은거 (추천받았다)
   - The REAL Cost Of AWS https://www.youtube.com/watch?v=kK-iR6g-V1g&t=229s
-- Typescript 챌린지 같은거 공부하기 전에 그냥 써라 (추천 받았다)
+- Typescript 챌린지 같은거 공부하기 전에 그냥 써라 (추천받았다)
   - Don't Learn TypeScript https://www.youtube.com/watch?v=kRiD6ZpAN_o
 - 포맷터와 린터를 헷갈리지 말것
   - You're (Probably) Using Prettier Wrong https://www.youtube.com/watch?v=Cd-gBxzcsdA
 - 타입스크립트를 쓸 때 OOP 파일구조로 짜지 마세요
   - You Might Be Using Typescript Wrong... https://www.youtube.com/watch?v=RmGHnYUqQ4k
-- 부정적인 생각을 줄이고, 긍정적으로 사고하라
+- 부정적인 생각을 줄이고, 긍정적으로 사고하라, 성격은 조금씩 변할 수 있다.
   - Big 5 Aspect 성격검사에서 신경성만 98을 찍었다.
