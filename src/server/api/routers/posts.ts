@@ -10,17 +10,11 @@ import { TRPCError } from "@trpc/server";
 
 import { z } from "zod";
 
-const filterUserForClient = (user: User) => {
-  return {
-    id: user.id,
-    username: user.username,
-    profilePicture: user.profileImageUrl,
-  };
-};
 import type { Post } from "@prisma/client";
 
 import { Ratelimit } from "@upstash/ratelimit"; // for deno: see above
 import { Redis } from "@upstash/redis";
+import { filterUserForClient } from "~/server/helpers/filterUserForClient";
 
 // Create a new ratelimiter, that allows 3 requests per 1 minutes
 const ratelimit = new Ratelimit({
@@ -52,14 +46,23 @@ const addUserDataToPosts = async (posts: Post[]) => {
         message: `Author for post not found. POST ID: ${post.id}, USER ID: ${post.authorId}`,
       });
     }
+
     if (!author.username) {
-      author.username = "Anonymous";
+      // user the ExternalUsername
+      if (!author.externalUsername) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: `Author has no Github Account: ${author.id}`,
+        });
+      }
+      author.username = author.externalUsername;
     }
+
     return {
       post,
       author: {
         ...author,
-        username: author.username,
+        username: author.username ?? "(Username not found)",
       },
     };
   });
@@ -68,7 +71,7 @@ const addUserDataToPosts = async (posts: Post[]) => {
 export const postsRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
     const posts = await ctx.prisma.post.findMany({
-      take: 100,
+      take: 50,
       orderBy: [{ createdAt: "desc" }],
     });
 
