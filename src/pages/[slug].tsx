@@ -6,6 +6,7 @@ import Image from "next/image";
 import Head from "next/head";
 import { PageLayout } from "~/components/layout";
 import { LoadingPage } from "~/components/loading";
+import { generateSSGHelper } from "~/server/helpers/ssgHelper";
 import { api } from "~/utils/api";
 import { PostView } from "~/components/postview";
 
@@ -57,18 +58,6 @@ const ProfilePage: NextPage<{ authorId: string }> = ({ authorId }) => {
     </>
   );
 };
-
-import { createProxySSGHelpers } from "@trpc/react-query/ssg";
-import { appRouter } from "~/server/api/root";
-import superjson from "superjson";
-import { prisma } from "~/server/db";
-
-const generateSSGHelper = () =>
-  createProxySSGHelpers({
-    router: appRouter,
-    ctx: { prisma, userId: null },
-    transformer: superjson,
-  });
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const ssg = generateSSGHelper();
