@@ -1,17 +1,18 @@
-import { type NextPage } from "next";
-import Head from "next/head";
-import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
-import Image from "next/image";
-import { useState } from "react";
-import Link from "next/link";
-import { PageLayout } from "~/components/layout";
-import { api } from "~/utils/api";
-import type { RouterOutputs } from "~/utils/api";
-
+import toast from "react-hot-toast";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+
+import { useState } from "react";
+
+import { type NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+
+import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
+import { api } from "~/utils/api";
+import { PageLayout } from "~/components/layout";
+import { PostView } from "~/components/postview";
 import { LoadingPage, LoadingSpinner } from "~/components/loading";
-import toast from "react-hot-toast";
 
 dayjs.extend(relativeTime);
 
@@ -78,39 +79,6 @@ const CreatePostWizard = () => {
       )}
 
       <UserButton afterSignOutUrl="/" />
-    </div>
-  );
-};
-
-type PostWithUser = RouterOutputs["posts"]["getAll"][number];
-
-const PostView = (props: PostWithUser) => {
-  const { post, author } = props;
-  return (
-    <div
-      key={post.id}
-      className="flex items-center gap-3 border-b border-slate-400 p-8"
-    >
-      <Image
-        src={author.profilePicture}
-        alt="Profile Image"
-        className="flex flex-col rounded-full"
-        width={56}
-        height={56}
-      />
-      <div className="flex flex-col">
-        <div className="test-slate-400 flex gap-1 font-bold">
-          <Link href={`/@${post.authorId}`}>
-            <span>{`@${author.username} `}</span>
-          </Link>
-          <Link href={`/post/${post.id}`}>
-            <span className="font-thin">{` · ${dayjs(
-              post.createdAt
-            ).fromNow()}`}</span>
-          </Link>
-        </div>
-        <span>{post.content}</span>
-      </div>
     </div>
   );
 };
