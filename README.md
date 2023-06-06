@@ -3,6 +3,16 @@
 FE 타입스크립트 테크리드를 맡고 있는 글로벌 기업을 맡고 있는 선배로부터 추천을 받아서 진행하게 된 프로젝트.
 T3 스택을 사용해 볼 수 있어서 좋았다.
 
+프로젝트는 다음을 클론코딩 했다. 
+- T3 Stack Tutorial - FROM 0 TO PROD FOR $0 (Next.js, tRPC, TypeScript, Tailwind, Prisma & More) 
+- https://www.youtube.com/watch?v=YkOSUVzOAA4
+ 
+선배에게 무한한 감사를 전한다. 옆에서 긴 시간 조언을 받았고, 많은 노하우(주로 태도)와 지식을 전수 받았다.
+비록 클론 코딩이긴 했지만, 그래도 쉽지 않았다. 몰랐던 개념이 많았고 해결해야 할 문제도 중간중간 존재했다.
+다하고 보니 그리 어려운 일은 아니였구나 쉽지만, 내 이해율은 50% 아래이지 않을까. 더불어 Theo 에게도 감사를 전한다.
+(Theo, thank you. I appreciate it very much. Your help was truly valuable.)
+
+
 - 가장 좋았던 점은 아무래도, FE와 BE가 하나의 validation 과 함수 정의를 통해서 유연하게 작동할 수 있다는 점.
 - 국내에서 trpc에 대해 실질적인 프로젝트에 적용시킬 수 있는 기회가 있을까? (아쉬울 것 같지만, 우선은 어떤 식으로 적용이 될지 잘 모르겠다.)
 - 특히 FE는 유지하고 BE 만 거대해지는 경우 등을 생각해보면, TS를 통해 api에 대한 type 추론만 남기고 따로 배보가 되면 진짜 좋을 것 같다.
